@@ -5,6 +5,14 @@ lamb=
 modelname=
 
 
+if [ $dataset = sind ];then
+    lamb=0.1
+elif [ $dataset = roc ];then
+    lamb=0.5
+elif [ $dataset = arxiv ];then
+    lamb=0.4
+fi
+
 CUDA_VISIBLE_DEVICES=0 python -u main.py --model ${modelname} --vocab $datapath/vocab.new.100d.lower.pt \
 --corpus $datapath/train --valid $datapath/val \
 --test $datapath/test --test_order $datapath/test.order \

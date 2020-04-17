@@ -196,19 +196,17 @@ class PointerNet(nn.Module):
                     left2_mask[b, ix, negix] = 0
 
         loss_rela.masked_fill_(rela_mask.view(-1) == 0, 0)
-        #loss_rela = loss_rela.view(batch, num, -1).sum(2) / target_mask.sum(1, True).float()
-        #loss_rela = loss_rela.sum() / batch
-        loss_rela = loss_rela.sum() / rela_mask.sum().float()
+        loss_rela = loss_rela.view(batch, num, -1).sum(2) / target_mask.sum(1, True).float()
+        loss_rela = loss_rela.sum() / batch
+
 
         loss_left1.masked_fill_(left1_mask.view(-1) == 0, 0)
-        #loss_left1 = loss_left1.view(batch, num, -1).sum(2) / target_mask.sum(1, True).float()
-        #loss_left1 = loss_left1.sum() / batch
-        loss_left1 = loss_left1.sum() / left1_mask.sum().float()
+        loss_left1 = loss_left1.view(batch, num, -1).sum(2) / target_mask.sum(1, True).float()
+        loss_left1 = loss_left1.sum() / batch
 
         loss_left2.masked_fill_(left2_mask.view(-1) == 0, 0)
-        #loss_left2 = loss_left2.view(batch, num, -1).sum(2) / target_mask.sum(1, True).float()
-        #loss_left2 = loss_left2.sum() / batch
-        loss_left2 = loss_left2.sum() / left2_mask.sum().float()
+        loss_left2 = loss_left2.view(batch, num, -1).sum(2) / target_mask.sum(1, True).float()
+        loss_left2 = loss_left2.sum() / batch
 
         # *************
 

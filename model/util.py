@@ -6,6 +6,11 @@ import math
 from torch.nn import functional as F
 
 
+def Linear(inputdim, outputdim, bias=True):
+    linear = nn.Linear(inputdim, outputdim, bias)
+    return linear
+
+
 def clone(module, N):
     return nn.ModuleList([copy.deepcopy(module) for _ in range(N)])
 
